@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { AppContext } from './AppProvider';
 
 const Logo = styled.div`
 	font-size: 1.5rem;
@@ -16,12 +17,22 @@ const ControlButtonElement = styled.div`
 	${props =>
 		props.active &&
 		css`
-			text-shadow: 0px 0px 60px #03ff03;
+			color: #03ff03;
 		`}
 `;
 
-function ControlButton({ name, active }) {
-	return <ControlButtonElement active={active}>{name}</ControlButtonElement>;
+function ControlButton({ name }) {
+	return (
+		<AppContext.Consumer>
+			{({ page, setPage }) => (
+				<ControlButtonElement
+					active={name === page ? 'true' : false}
+					onClick={() => setPage(name)}>
+					{name}
+				</ControlButtonElement>
+			)}
+		</AppContext.Consumer>
+	);
 }
 
 function AppBar() {
@@ -29,7 +40,7 @@ function AppBar() {
 		<Bar>
 			<Logo>CryptoDash</Logo>
 			<div></div>
-			<ControlButton active name='Dashboard' />
+			<ControlButton name='Dashboard' />
 			<ControlButton name='Settings' />
 		</Bar>
 	);

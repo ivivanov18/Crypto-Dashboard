@@ -3,12 +3,15 @@ import './App.css';
 import WelcomeMessage from '../components/WelcomeMessage';
 import AppLayout from '../components/AppLayout';
 import AppBar from '../components/AppBar';
+import { AppProvider } from '../components/AppProvider';
 
 function App() {
 	return (
 		<AppLayout>
-			<AppBar />
-			<WelcomeMessage />
+			<AppProvider>
+				<AppBar />
+				<WelcomeMessage />
+			</AppProvider>
 		</AppLayout>
 	);
 }
