@@ -1,14 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import './App.css';
 import WelcomeMessage from '../components/WelcomeMessage';
+import AppLayout from '../components/AppLayout';
+import AppBar from '../components/AppBar';
 
 function App() {
 	return (
-		<div className='App'>
-			<header className='App-header'></header>
+		<AppLayout>
+			<AppBar />
 			<WelcomeMessage />
-		</div>
+		</AppLayout>
 	);
 }
 
