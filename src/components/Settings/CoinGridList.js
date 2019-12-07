@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AppContext } from '../AppProvider';
-import { Tile, SelectableTile } from '../Shared/Tile';
+import CoinTile from '../Shared/CoinTile';
 
 const CoinGridStyled = styled.div`
 	display: grid;
@@ -9,13 +9,17 @@ const CoinGridStyled = styled.div`
 	grid-gap: 15px;
 `;
 
+function getCoinsToDisplay(coinsList, nbCoinsToDisplay = 100) {
+	return Object.keys(coinsList).splice(0, nbCoinsToDisplay);
+}
+
 function CoinGridList() {
 	return (
 		<CoinGridStyled>
 			<AppContext.Consumer>
 				{({ coinList }) =>
-					Object.keys(coinList).map(coinKey => (
-						<SelectableTile>{coinKey}</SelectableTile>
+					getCoinsToDisplay(coinList).map(coinKey => (
+						<CoinTile coinKey={coinKey} />
 					))
 				}
 			</AppContext.Consumer>
