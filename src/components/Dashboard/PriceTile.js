@@ -1,14 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { SelectableTile } from '../Shared/Tile';
-import { fontSize3, fontSizeBig } from '../Shared/Styles';
+import { fontSize3, fontSizeBig, greenBoxShadow } from '../Shared/Styles';
 import { CoinHeaderGridStyled } from '../Shared/CoinHeaderGrid';
 
 const PriceTileStyled = styled(SelectableTile)`
 	${props =>
-		props.compact &&
+		props.isCurrentFavorite &&
 		css`
-			${fontSize3}
+			${greenBoxShadow}
+			pointer-events:none;
 		`}
 `;
 
@@ -43,11 +44,13 @@ function ChangePercent({ data }) {
 	);
 }
 
-function PriceTile({ price, index }) {
+function PriceTile({ price, index, currentFavorite, setCurrentFavorite }) {
 	const key = Object.keys(price)[0];
 	const data = price[key]['USD'];
 	return (
-		<PriceTileStyled>
+		<PriceTileStyled
+			isCurrentFavorite={currentFavorite === key}
+			onClick={() => setCurrentFavorite(key)}>
 			<CoinHeaderGridStyled>
 				<div>{key}</div>
 			</CoinHeaderGridStyled>

@@ -14,9 +14,14 @@ function PriceGrid() {
 	return (
 		<PriceGridStyled>
 			<AppContext.Consumer>
-				{({ prices }) =>
+				{({ prices, currentFavorite, setCurrentFavorite }) =>
 					prices.map((price, index) => (
-						<PriceTile price={price} index={index} />
+						<PriceTile
+							price={price}
+							index={index}
+							currentFavorite={currentFavorite}
+							setCurrentFavorite={setCurrentFavorite}
+						/>
 					))
 				}
 			</AppContext.Consumer>
