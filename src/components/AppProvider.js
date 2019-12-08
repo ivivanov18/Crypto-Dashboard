@@ -24,11 +24,35 @@ export class AppProvider extends Component {
 
 	componentDidMount() {
 		this.fetchCoins();
+		this.fetchPrices();
 	}
 
 	async fetchCoins() {
 		const coinList = (await cc.coinList()).Data;
 		this.setState({ coinList });
+	}
+
+	async fetchPrices() {
+		if (this.state.firstVisit) {
+			return;
+		}
+		const prices = (await this.getPrices()).filter(
+			price => Object.keys(price).length
+		);
+		this.setState({ prices });
+	}
+
+	async getPrices() {
+		const pricesData = [];
+		for (let fav of this.state.favoriteCoinsList) {
+			try {
+				const priceData = await cc.priceFull(fav, 'USD');
+				pricesData.push(priceData);
+			} catch (e) {
+				console.warn('Error while fetching prices');
+			}
+		}
+		return pricesData;
 	}
 
 	setPage(page) {
@@ -73,10 +97,15 @@ export class AppProvider extends Component {
 	}
 
 	confirmFavorites() {
-		this.setState({
-			firstVisit: false,
-			page: 'Dashboard',
-		});
+		this.setState(
+			{
+				firstVisit: false,
+				page: 'Dashboard',
+			},
+			() => {
+				this.fetchPrices();
+			}
+		);
 		localStorage.setItem(
 			'cryptoDash',
 			JSON.stringify({

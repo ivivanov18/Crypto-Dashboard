@@ -10,8 +10,6 @@ const CoinGridStyled = styled.div`
 `;
 
 function getLowerSection(filteredCoins, coinsList, nbCoinsToDisplay) {
-	console.log({ filteredCoins });
-	console.log({ nbCoinsToDisplay });
 	return filteredCoins && Object.keys(filteredCoins)
 		? Object.keys(filteredCoins)
 		: Object.keys(coinsList).slice(0, nbCoinsToDisplay);
