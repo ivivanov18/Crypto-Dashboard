@@ -17,6 +17,7 @@ export class AppProvider extends Component {
 			addCoinToFavorites: this.addCoinToFavorites.bind(this),
 			removeCoinFromFavorites: this.removeCoinFromFavorites.bind(this),
 			isInFavorites: this.isInFavorites.bind(this),
+			setFilteredCoins: this.setFilteredCoins.bind(this),
 		};
 		this.fetchCoins = this.fetchCoins.bind(this);
 	}
@@ -41,7 +42,6 @@ export class AppProvider extends Component {
 			!favoriteCoinsList.includes(coinKey)
 		) {
 			favoriteCoinsList.push(coinKey);
-			console.log({ favoriteCoinsList });
 			this.setState({ favoriteCoinsList });
 		}
 	}
@@ -83,6 +83,10 @@ export class AppProvider extends Component {
 				favoriteCoinsList: this.state.favoriteCoinsList,
 			})
 		);
+	}
+
+	setFilteredCoins(filteredCoinsList) {
+		this.setState({ filteredCoinsList });
 	}
 
 	render() {
