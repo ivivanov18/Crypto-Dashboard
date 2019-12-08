@@ -69,8 +69,6 @@ export class AppProvider extends Component {
 			return initialState;
 		}
 		const { favoriteCoinsList } = JSON.parse(cryptoDash);
-		console.log({ cryptoDash });
-		console.log({ favoriteCoinsList });
 		return { favoriteCoinsList };
 	}
 
