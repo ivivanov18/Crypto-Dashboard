@@ -68,7 +68,10 @@ export class AppProvider extends Component {
 			};
 			return initialState;
 		}
-		return {};
+		const { favoriteCoinsList } = JSON.parse(cryptoDash);
+		console.log({ cryptoDash });
+		console.log({ favoriteCoinsList });
+		return { favoriteCoinsList };
 	}
 
 	confirmFavorites() {
@@ -79,7 +82,7 @@ export class AppProvider extends Component {
 		localStorage.setItem(
 			'cryptoDash',
 			JSON.stringify({
-				test: 'hello',
+				favoriteCoinsList: this.state.favoriteCoinsList,
 			})
 		);
 	}
