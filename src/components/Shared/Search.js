@@ -30,7 +30,6 @@ const handleFilter = _.debounce((inputValue, coinsList, setFilteredCoins) => {
 	const fuzzyResults = fuzzy
 		.filter(inputValue, allSearchStrings, {})
 		.map(result => result.string);
-	console.log({ fuzzyResults });
 	const filteredCoins = _.pickBy(coinsList, (result, symKey) => {
 		const coinName = result.coinName;
 		return (

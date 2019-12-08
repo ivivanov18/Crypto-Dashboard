@@ -39,6 +39,7 @@ export class AppProvider extends Component {
 		const prices = (await this.getPrices()).filter(
 			price => Object.keys(price).length
 		);
+		console.log({ prices });
 		this.setState({ prices });
 	}
 
