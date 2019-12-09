@@ -9,7 +9,7 @@ function PriceChart() {
 		<AppContext.Consumer>
 			{({}) => (
 				<Tile>
-					<ReactHighcharts config={highchartsConfig} />
+					<ReactHighcharts config={highchartsConfig()} />
 				</Tile>
 			)}
 		</AppContext.Consumer>
