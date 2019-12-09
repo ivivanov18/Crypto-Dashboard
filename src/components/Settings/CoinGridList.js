@@ -38,7 +38,7 @@ function CoinGridList({ topSection }) {
 						favoriteCoinsList,
 						filteredCoinsList
 					).map(coinKey => (
-						<CoinTile coinKey={coinKey} topSection={topSection} />
+						<CoinTile key={coinKey} coinKey={coinKey} topSection={topSection} />
 					))
 				}
 			</AppContext.Consumer>

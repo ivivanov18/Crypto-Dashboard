@@ -17,6 +17,7 @@ function PriceGrid() {
 				{({ prices, currentFavorite, setCurrentFavorite }) =>
 					prices.map((price, index) => (
 						<PriceTile
+							key={`${index}-${price}`}
 							price={price}
 							index={index}
 							currentFavorite={currentFavorite}
